@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Vue Demo</title>
+</head>
+<body>
+    <div id="app">
+
+        <h1>Hello, {{appName}}</h1>
+        <div>
+            <label>Enter Your Name</label>
+            <input type="text" v-model="name"/>
+            <h2 :title="name" v-if="name.length > 0">Hello,{{name}}</h2>
+            <div v-html="rawHTML"></div>
+
+            <ul>
+                <li v-for="(task,index) in tasks" :key="">
+                    {{task}}
+                    <span @click="removeItem(index)">X</span>
+                </li>
+            </ul>
+
+            <button v-on:click="handleClick('MD SAGOR')">Click ME</button>
+        </div>
+    </div>
+    
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                appName:'Vue Carsh Course',
+                name: '',
+                rawHTML: '<h1>Meet Up</h1><p>2023 Registation Going On</p>',
+                tasks:['ONE','TWO', 'THREE','FOUR'],
+            },
+            methods:{
+                handleClick: function(name){
+                    alert(this.appName + ' '+ name);
+                },
+                removeItem: function(index){
+                    this.tasks.splice(index,1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
